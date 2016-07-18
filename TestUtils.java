@@ -19,3 +19,23 @@ public class TestUtils {
         driver.swipe(z, xstart, z, xend, 400);
     }
 }
+
+  public static int getAllTextElementsNumber(AndroidDriver<AndroidElement> driver, By by) throws InterruptedException {
+        int oldSize;
+        Set<String> texts = new HashSet<>();
+
+            do {
+                oldSize = texts.size();
+                for (WebElement element : driver.findElements(by)) {
+                    texts.add(element.getText());
+                }
+                scroll(driver);
+            } while (oldSize < texts.size());
+
+
+        return texts.size();
+
+    }
+
+
+}
